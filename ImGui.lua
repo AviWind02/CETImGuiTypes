@@ -1,0 +1,746 @@
+---@alias float number
+---@alias bool boolean
+---@alias int number
+---@alias double number
+
+---@class ImDrawList
+---@class ImFont
+---@class ImGuiTableSortSpecs
+
+---@class ImVec2
+---@field x float
+---@field y float
+ImVec2 = {}
+
+---@class ImVec4
+---@field x float
+---@field y float
+---@field z float
+---@field w float
+ImVec4 = {}
+
+---@class ImGuiStyle
+---@field Alpha                         float
+---@field DisabledAlpha                 float
+---@field WindowPadding                 ImVec2
+---@field WindowRounding                float
+---@field WindowBorderSize              float
+---@field WindowMinSize                 ImVec2
+---@field WindowTitleAlign              ImVec2
+---@field WindowMenuButtonPosition      ImGuiDir
+---@field ChildRounding                 float
+---@field ChildBorderSize               float
+---@field PopupRounding                 float
+---@field PopupBorderSize               float
+---@field FramePadding                  ImVec2
+---@field FrameRounding                 float
+---@field FrameBorderSize               float
+---@field ItemSpacing                   ImVec2
+---@field ItemInnerSpacing              ImVec2
+---@field CellPadding                   ImVec2
+---@field TouchExtraPadding             ImVec2
+---@field IndentSpacing                 float
+---@field ColumnsMinSpacing             float
+---@field ScrollbarSize                 float
+---@field ScrollbarRounding             float
+---@field GrabMinSize                   float
+---@field GrabRounding                  float
+---@field LogSliderDeadzone             float
+---@field TabRounding                   float
+---@field TabBorderSize                 float
+---@field TabMinWidthForCloseButton     float
+---@field ColorButtonPosition           ImGuiDir
+---@field ButtonTextAlign               ImVec2
+---@field SelectableTextAlign           ImVec2
+---@field DisplayWindowPadding          ImVec2
+---@field DisplaySafeAreaPadding        ImVec2
+---@field MouseCursorScale              float
+---@field AntiAliasedLines              bool
+---@field AntiAliasedLinesUseTex        bool
+---@field AntiAliasedFill               bool
+---@field CurveTessellationTol          float
+---@field CircleTessellationMaxError    float
+---@field ScaleAllSizes                 fun(scale_factor: float)
+ImGuiStyle = {}
+
+---@class ImGuiWindowFlags
+---@field None                          ImGuiWindowFlags 0
+---@field NoTitleBar                    ImGuiWindowFlags 1
+---@field NoResize                      ImGuiWindowFlags 2
+---@field NoMove                        ImGuiWindowFlags 3
+---@field NoScrollbar                   ImGuiWindowFlags 4
+---@field NoScrollWithMouse             ImGuiWindowFlags 5
+---@field NoCollapse                    ImGuiWindowFlags 6
+---@field AlwaysAutoResize              ImGuiWindowFlags 7
+---@field NoBackground                  ImGuiWindowFlags 8
+---@field NoSavedSettings               ImGuiWindowFlags 9
+---@field NoMouseInputs                 ImGuiWindowFlags 10
+---@field MenuBar                       ImGuiWindowFlags 11
+---@field HorizontalScrollbar           ImGuiWindowFlags 12
+---@field NoFocusOnAppearing            ImGuiWindowFlags 13
+---@field NoBringToFrontOnFocus         ImGuiWindowFlags 14
+---@field AlwaysVerticalScrollbar       ImGuiWindowFlags 15
+---@field AlwaysHorizontalScrollbar     ImGuiWindowFlags 16
+---@field AlwaysUseWindowPadding        ImGuiWindowFlags 17
+---@field NoNavInputs                   ImGuiWindowFlags 18
+---@field NoNavFocus                    ImGuiWindowFlags 19
+---@field UnsavedDocument               ImGuiWindowFlags 20
+---@field NoNav                         ImGuiWindowFlags 21
+---@field NoDecoration                  ImGuiWindowFlags 22
+---@field NoInputs                      ImGuiWindowFlags 23
+---@field NavFlattened                  ImGuiWindowFlags 24
+---@field ChildWindow                   ImGuiWindowFlags 25
+---@field Tooltip                       ImGuiWindowFlags 26
+---@field Popup                         ImGuiWindowFlags 27
+---@field Modal                         ImGuiWindowFlags 28
+---@field ChildMenu                     ImGuiWindowFlags 29
+ImGuiWindowFlags = {}
+
+---@class ImGuiFocusedFlags
+---@field None                          ImGuiFocusedFlags 0
+---@field ChildWindows                  ImGuiFocusedFlags 1
+---@field RootWindow                    ImGuiFocusedFlags 2
+---@field AnyWindow                     ImGuiFocusedFlags 3
+---@field RootAndChildWindows           ImGuiFocusedFlags 4
+ImGuiFocusedFlags = {}
+
+---@class ImGuiHoveredFlags
+---@field None                          ImGuiHoveredFlags 0
+---@field ChildWindows                  ImGuiHoveredFlags 1
+---@field RootWindow                    ImGuiHoveredFlags 2
+---@field AnyWindow                     ImGuiHoveredFlags 3
+---@field AllowWhenBlockedByPopup       ImGuiHoveredFlags 4
+---@field AllowWhenBlockedByActiveItem  ImGuiHoveredFlags 5
+---@field AllowWhenOverlapped           ImGuiHoveredFlags 6
+---@field AllowWhenDisabled             ImGuiHoveredFlags 7
+---@field RectOnly                      ImGuiHoveredFlags 8
+---@field RootAndChildWindows           ImGuiHoveredFlags 9
+ImGuiHoveredFlags = {}
+
+---@class ImGuiCond
+---@field None                          ImGuiCond 0
+---@field Always                        ImGuiCond 1
+---@field Once                          ImGuiCond 2
+---@field FirstUseEver                  ImGuiCond 3
+---@field Appearing                     ImGuiCond 4
+ImGuiCond = {}
+
+---@class ImGuiCol
+---@field Text                          ImGuiCol 0
+---@field TextDisabled                  ImGuiCol 1
+---@field WindowBg                      ImGuiCol 2
+---@field ChildBg                       ImGuiCol 3
+---@field PopupBg                       ImGuiCol 4
+---@field Border                        ImGuiCol 5
+---@field BorderShadow                  ImGuiCol 6
+---@field FrameBg                       ImGuiCol 7
+---@field FrameBgHovered                ImGuiCol 8
+---@field FrameBgActive                 ImGuiCol 9
+---@field TitleBg                       ImGuiCol 10
+---@field TitleBgActive                 ImGuiCol 11
+---@field TitleBgCollapsed              ImGuiCol 12
+---@field MenuBarBg                     ImGuiCol 13
+---@field ScrollbarBg                   ImGuiCol 14
+---@field ScrollbarGrab                 ImGuiCol 15
+---@field ScrollbarGrabHovered          ImGuiCol 16
+---@field ScrollbarGrabActive           ImGuiCol 17
+---@field CheckMark                     ImGuiCol 18
+---@field SliderGrab                    ImGuiCol 19
+---@field SliderGrabActive              ImGuiCol 20
+---@field Button                        ImGuiCol 21
+---@field ButtonHovered                 ImGuiCol 22
+---@field ButtonActive                  ImGuiCol 23
+---@field Header                        ImGuiCol 24
+---@field HeaderHovered                 ImGuiCol 25
+---@field HeaderActive                  ImGuiCol 26
+---@field Separator                     ImGuiCol 27
+---@field SeparatorHovered              ImGuiCol 28
+---@field SeparatorActive               ImGuiCol 29
+---@field ResizeGrip                    ImGuiCol 30
+---@field ResizeGripHovered             ImGuiCol 31
+---@field ResizeGripActive              ImGuiCol 32
+---@field Tab                           ImGuiCol 33
+---@field TabHovered                    ImGuiCol 34
+---@field TabActive                     ImGuiCol 35
+---@field TabUnfocused                  ImGuiCol 36
+---@field TabUnfocusedActive            ImGuiCol 37
+---@field PlotLines                     ImGuiCol 38
+---@field PlotLinesHovered              ImGuiCol 39
+---@field PlotHistogram                 ImGuiCol 40
+---@field PlotHistogramHovered          ImGuiCol 41
+---@field TableHeaderBg                 ImGuiCol 42
+---@field TableBorderStrong             ImGuiCol 43
+---@field TableBorderLight              ImGuiCol 44
+---@field TableRowBg                    ImGuiCol 45
+---@field TableRowBgAlt                 ImGuiCol 46
+---@field TextSelectedBg                ImGuiCol 47
+---@field DragDropTarget                ImGuiCol 48
+---@field NavHighlight                  ImGuiCol 49
+---@field NavWindowingHighlight         ImGuiCol 50
+---@field NavWindowingDimBg             ImGuiCol 51
+---@field ModalWindowDimBg              ImGuiCol 52
+---@field COUNT                         ImGuiCol 53
+ImGuiCol = {}
+
+---@class ImGuiStyleVar
+---@field Alpha                         ImGuiStyleVar 0
+---@field DisabledAlpha                 ImGuiStyleVar 1
+---@field WindowPadding                 ImGuiStyleVar 2
+---@field WindowRounding                ImGuiStyleVar 3
+---@field WindowBorderSize              ImGuiStyleVar 4
+---@field WindowMinSize                 ImGuiStyleVar 5
+---@field WindowTitleAlign              ImGuiStyleVar 6
+---@field ChildRounding                 ImGuiStyleVar 7
+---@field ChildBorderSize               ImGuiStyleVar 8
+---@field PopupRounding                 ImGuiStyleVar 9
+---@field PopupBorderSize               ImGuiStyleVar 10
+---@field FramePadding                  ImGuiStyleVar 11
+---@field FrameRounding                 ImGuiStyleVar 12
+---@field FrameBorderSize               ImGuiStyleVar 13
+---@field ItemSpacing                   ImGuiStyleVar 14
+---@field ItemInnerSpacing              ImGuiStyleVar 15
+---@field IndentSpacing                 ImGuiStyleVar 16
+---@field CellPadding                   ImGuiStyleVar 17
+---@field ScrollbarSize                 ImGuiStyleVar 18
+---@field ScrollbarRounding             ImGuiStyleVar 19
+---@field GrabMinSize                   ImGuiStyleVar 20
+---@field GrabRounding                  ImGuiStyleVar 21
+---@field TabRounding                   ImGuiStyleVar 22
+---@field SelectableTextAlign           ImGuiStyleVar 23
+---@field ButtonTextAlign               ImGuiStyleVar 24
+---@field COUNT                         ImGuiStyleVar 25
+ImGuiStyleVar = {}
+
+---@class ImGuiDir
+---@field None                          ImGuiDir 0
+---@field Left                          ImGuiDir 1
+---@field Right                         ImGuiDir 2
+---@field Up                            ImGuiDir 3
+---@field Down                          ImGuiDir 4
+---@field COUNT                         ImGuiDir 5
+ImGuiDir = {}
+
+---@class ImGuiComboFlags
+---@field None                          ImGuiComboFlags 0
+---@field PopupAlignLeft                ImGuiComboFlags 1
+---@field HeightSmall                   ImGuiComboFlags 2
+---@field HeightRegular                 ImGuiComboFlags 3
+---@field HeightLarge                   ImGuiComboFlags 4
+---@field HeightLargest                 ImGuiComboFlags 5
+---@field NoArrowButton                 ImGuiComboFlags 6
+---@field NoPreview                     ImGuiComboFlags 7
+---@field HeightMask                    ImGuiComboFlags 8
+ImGuiComboFlags = {}
+
+---@class ImGuiInputTextFlags
+---@field None                          ImGuiInputTextFlags 0
+---@field CharsDecimal                  ImGuiInputTextFlags 1
+---@field CharsHexadecimal              ImGuiInputTextFlags 2
+---@field CharsUppercase                ImGuiInputTextFlags 3
+---@field CharsNoBlank                  ImGuiInputTextFlags 4
+---@field AutoSelectAll                 ImGuiInputTextFlags 5
+---@field EnterReturnsTrue              ImGuiInputTextFlags 6
+---@field CallbackCompletion            ImGuiInputTextFlags 7
+---@field CallbackHistory               ImGuiInputTextFlags 8
+---@field CallbackAlways                ImGuiInputTextFlags 9
+---@field CallbackCharFilter            ImGuiInputTextFlags 10
+---@field AllowTabInput                 ImGuiInputTextFlags 11
+---@field CtrlEnterForNewLine           ImGuiInputTextFlags 12
+---@field NoHorizontalScroll            ImGuiInputTextFlags 13
+---@field AlwaysOverwrite               ImGuiInputTextFlags 14
+---@field ReadOnly                      ImGuiInputTextFlags 15
+---@field Password                      ImGuiInputTextFlags 16
+---@field NoUndoRedo                    ImGuiInputTextFlags 17
+---@field CharsScientific               ImGuiInputTextFlags 18
+---@field CallbackResize                ImGuiInputTextFlags 19
+---@field CallbackEdit                  ImGuiInputTextFlags 20
+ImGuiInputTextFlags = {}
+
+---@class ImGuiSliderFlags
+---@field None                          ImGuiSliderFlags 0
+---@field ClampOnInput                  ImGuiSliderFlags 1
+---@field Logarithmic                   ImGuiSliderFlags 2
+---@field NoRoundToFormat               ImGuiSliderFlags 3
+---@field NoInput                       ImGuiSliderFlags 4
+ImGuiSliderFlags = {}
+
+---@class ImGuiColorEditFlags
+---@field None                          ImGuiColorEditFlags 0
+---@field NoAlpha                       ImGuiColorEditFlags 1
+---@field NoPicker                      ImGuiColorEditFlags 2
+---@field NoOptions                     ImGuiColorEditFlags 3
+---@field NoSmallPreview                ImGuiColorEditFlags 4
+---@field NoInputs                      ImGuiColorEditFlags 5
+---@field NoTooltip                     ImGuiColorEditFlags 6
+---@field NoLabel                       ImGuiColorEditFlags 7
+---@field NoSidePreview                 ImGuiColorEditFlags 8
+---@field NoDragDrop                    ImGuiColorEditFlags 9
+---@field NoBorder                      ImGuiColorEditFlags 10
+---@field AlphaBar                      ImGuiColorEditFlags 11
+---@field AlphaPreview                  ImGuiColorEditFlags 12
+---@field AlphaPreviewHalf              ImGuiColorEditFlags 13
+---@field HDR                           ImGuiColorEditFlags 14
+---@field DisplayRGB                    ImGuiColorEditFlags 15
+---@field DisplayHSV                    ImGuiColorEditFlags 16
+---@field DisplayHex                    ImGuiColorEditFlags 17
+---@field Uint8                         ImGuiColorEditFlags 18
+---@field Float                         ImGuiColorEditFlags 19
+---@field PickerHueBar                  ImGuiColorEditFlags 20
+---@field PickerHueWheel                ImGuiColorEditFlags 21
+---@field InputRGB                      ImGuiColorEditFlags 22
+---@field InputHSV                      ImGuiColorEditFlags 23
+---@field _OptionsDefault               ImGuiColorEditFlags 24
+---@field _DisplayMask                  ImGuiColorEditFlags 25
+---@field _DataTypeMask                 ImGuiColorEditFlags 26
+---@field _PickerMask                   ImGuiColorEditFlags 27
+---@field _InputMask                    ImGuiColorEditFlags 28
+ImGuiColorEditFlags = {}
+
+---@class ImGuiTreeNodeFlags
+---@field None                          ImGuiTreeNodeFlags 0
+---@field Selected                      ImGuiTreeNodeFlags 1
+---@field Framed                        ImGuiTreeNodeFlags 2
+---@field AllowItemOverlap              ImGuiTreeNodeFlags 3
+---@field NoTreePushOnOpen              ImGuiTreeNodeFlags 4
+---@field NoAutoOpenOnLog               ImGuiTreeNodeFlags 5
+---@field DefaultOpen                   ImGuiTreeNodeFlags 6
+---@field OpenOnDoubleClick             ImGuiTreeNodeFlags 7
+---@field OpenOnArrow                   ImGuiTreeNodeFlags 8
+---@field Leaf                          ImGuiTreeNodeFlags 9
+---@field Bullet                        ImGuiTreeNodeFlags 10
+---@field FramePadding                  ImGuiTreeNodeFlags 11
+---@field SpanAvailWidth                ImGuiTreeNodeFlags 12
+---@field SpanFullWidth                 ImGuiTreeNodeFlags 13
+---@field NavLeftJumpsBackHere          ImGuiTreeNodeFlags 14
+---@field CollapsingHeader              ImGuiTreeNodeFlags 15
+ImGuiTreeNodeFlags = {}
+
+---@class ImGuiSelectableFlags
+---@field None                          ImGuiSelectableFlags 0
+---@field DontClosePopups               ImGuiSelectableFlags 1
+---@field SpanAllColumns                ImGuiSelectableFlags 2
+---@field AllowDoubleClick              ImGuiSelectableFlags 3
+---@field Disabled                      ImGuiSelectableFlags 4
+---@field AllowItemOverlap              ImGuiSelectableFlags 5
+ImGuiSelectableFlags = {}
+
+---@class ImGuiPopupFlags
+---@field None                          ImGuiPopupFlags 0
+---@field MouseButtonLeft               ImGuiPopupFlags 1
+---@field MouseButtonRight              ImGuiPopupFlags 2
+---@field MouseButtonMiddle             ImGuiPopupFlags 3
+---@field MouseButtonMask_              ImGuiPopupFlags 4
+---@field MouseButtonDefault_           ImGuiPopupFlags 5
+---@field NoOpenOverExistingPopup       ImGuiPopupFlags 6
+---@field NoOpenOverItems               ImGuiPopupFlags 7
+---@field AnyPopupId                    ImGuiPopupFlags 8
+---@field AnyPopupLevel                 ImGuiPopupFlags 9
+---@field AnyPopup                      ImGuiPopupFlags 10
+ImGuiPopupFlags = {}
+
+---@class ImGuiTableFlags
+---@field None                          ImGuiTableFlags 0
+---@field Resizable                     ImGuiTableFlags 1
+---@field Reorderable                   ImGuiTableFlags 2
+---@field Hideable                      ImGuiTableFlags 3
+---@field Sortable                      ImGuiTableFlags 4
+---@field NoSavedSettings               ImGuiTableFlags 5
+---@field ContextMenuInBody             ImGuiTableFlags 6
+---@field RowBg                         ImGuiTableFlags 7
+---@field BordersInnerH                 ImGuiTableFlags 8
+---@field BordersOuterH                 ImGuiTableFlags 9
+---@field BordersInnerV                 ImGuiTableFlags 10
+---@field BordersOuterV                 ImGuiTableFlags 11
+---@field BordersH                      ImGuiTableFlags 12
+---@field BordersV                      ImGuiTableFlags 13
+---@field BordersInner                  ImGuiTableFlags 14
+---@field BordersOuter                  ImGuiTableFlags 15
+---@field Borders                       ImGuiTableFlags 16
+---@field NoBordersInBody               ImGuiTableFlags 17
+---@field NoBordersInBodyUntilResize    ImGuiTableFlags 18
+---@field SizingFixedFit                ImGuiTableFlags 19
+---@field SizingFixedSame               ImGuiTableFlags 20
+---@field SizingStretchProp             ImGuiTableFlags 21
+---@field SizingStretchSame             ImGuiTableFlags 22
+---@field NoHostExtendX                 ImGuiTableFlags 23
+---@field NoHostExtendY                 ImGuiTableFlags 24
+---@field NoKeepColumnsVisible          ImGuiTableFlags 25
+---@field PreciseWidths                 ImGuiTableFlags 26
+---@field NoClip                        ImGuiTableFlags 27
+---@field PadOuterX                     ImGuiTableFlags 28
+---@field NoPadOuterX                   ImGuiTableFlags 29
+---@field NoPadInnerX                   ImGuiTableFlags 30
+---@field ScrollX                       ImGuiTableFlags 31
+---@field ScrollY                       ImGuiTableFlags 32
+---@field SortMulti                     ImGuiTableFlags 33
+---@field SortTristate                  ImGuiTableFlags 34
+---@field SizingMask                    ImGuiTableFlags 35
+ImGuiTableFlags = {}
+
+---@class ImGuiTableColumnFlags
+---@field None                          ImGuiTableColumnFlags 0
+---@field Disabled                      ImGuiTableColumnFlags 1
+---@field DefaultHide                   ImGuiTableColumnFlags 2
+---@field DefaultSort                   ImGuiTableColumnFlags 3
+---@field WidthStretch                  ImGuiTableColumnFlags 4
+---@field WidthFixed                    ImGuiTableColumnFlags 5
+---@field NoResize                      ImGuiTableColumnFlags 6
+---@field NoReorder                     ImGuiTableColumnFlags 7
+---@field NoHide                        ImGuiTableColumnFlags 8
+---@field NoClip                        ImGuiTableColumnFlags 9
+---@field NoSort                        ImGuiTableColumnFlags 10
+---@field NoSortAscending               ImGuiTableColumnFlags 11
+---@field NoSortDescending              ImGuiTableColumnFlags 12
+---@field NoHeaderLabel                 ImGuiTableColumnFlags 13
+---@field NoHeaderWidth                 ImGuiTableColumnFlags 14
+---@field PreferSortAscending           ImGuiTableColumnFlags 15
+---@field PreferSortDescending          ImGuiTableColumnFlags 16
+---@field IndentEnable                  ImGuiTableColumnFlags 17
+---@field IndentDisable                 ImGuiTableColumnFlags 18
+---@field IsEnabled                     ImGuiTableColumnFlags 19
+---@field IsVisible                     ImGuiTableColumnFlags 20
+---@field IsSorted                      ImGuiTableColumnFlags 21
+---@field IsHovered                     ImGuiTableColumnFlags 22
+---@field WidthMask_                    ImGuiTableColumnFlags 23
+---@field IndentMask_                   ImGuiTableColumnFlags 24
+---@field StatusMask_                   ImGuiTableColumnFlags 25
+---@field NoDirectResize_               ImGuiTableColumnFlags 26
+ImGuiTableColumnFlags = {}
+
+---@class ImGuiTableRowFlags
+---@field None                          ImGuiTableRowFlags 0
+---@field Headers                       ImGuiTableRowFlags 1
+ImGuiTableRowFlags = {}
+
+---@class ImGuiTableBgTarget
+---@field None                          ImGuiTableBgTarget 0
+---@field RowBg0                        ImGuiTableBgTarget 1
+---@field RowBg1                        ImGuiTableBgTarget 2
+---@field CellBg                        ImGuiTableBgTarget 3
+ImGuiTableBgTarget = {}
+
+---@class ImDrawFlags
+---@field None                               ImDrawFlags 0
+---@field Closed                             ImDrawFlags 1
+---@field ImDrawFlags_RoundCornersTopLeft    ImDrawFlags 2
+---@field RoundCornersTopRight               ImDrawFlags 3
+---@field RoundCornersBottomLeft             ImDrawFlags 4
+---@field RoundCornersBottomRight            ImDrawFlags 5
+---@field RoundCornersNone                   ImDrawFlags 6
+---@field RoundCornersTop                    ImDrawFlags 7
+---@field RoundCornersBottom                 ImDrawFlags 8
+---@field RoundCornersLeft                   ImDrawFlags 9
+---@field RoundCornersRight                  ImDrawFlags 10
+---@field RoundCornersAll                    ImDrawFlags 11
+ImDrawFlags = {}
+
+---@class ImGuiTabBarFlags
+---@field None                          ImGuiTabBarFlags 0
+---@field Reorderable                   ImGuiTabBarFlags 1
+---@field AutoSelectNewTabs             ImGuiTabBarFlags 2
+---@field TabListPopupButton            ImGuiTabBarFlags 3
+---@field NoCloseWithMiddleMouseButton  ImGuiTabBarFlags 4
+---@field NoTabListScrollingButtons     ImGuiTabBarFlags 5
+---@field NoTooltip                     ImGuiTabBarFlags 6
+---@field FittingPolicyResizeDown       ImGuiTabBarFlags 7
+---@field FittingPolicyScroll           ImGuiTabBarFlags 8
+---@field FittingPolicyMask_            ImGuiTabBarFlags 9
+---@field FittingPolicyDefault_         ImGuiTabBarFlags 10
+ImGuiTabBarFlags = {}
+
+---@class ImGuiTabItemFlags
+---@field None                          ImGuiTabItemFlags 0
+---@field UnsavedDocument               ImGuiTabItemFlags 1
+---@field SetSelected                   ImGuiTabItemFlags 2
+---@field NoCloseWithMiddleMouseButton  ImGuiTabItemFlags 3
+---@field NoPushId                      ImGuiTabItemFlags 4
+---@field NoTooltip                     ImGuiTabItemFlags 5
+---@field NoReorder                     ImGuiTabItemFlags 6
+---@field Leading                       ImGuiTabItemFlags 7
+---@field Trailing                      ImGuiTabItemFlags 8
+ImGuiTabItemFlags = {}
+
+---@class ImGuiMouseButton
+---@field Left                          ImGuiMouseButton 0
+---@field Right                         ImGuiMouseButton 1
+---@field Middle                        ImGuiMouseButton 2
+---@field COUNT                         ImGuiMouseButton 3
+ImGuiMouseButton = {}
+
+---@class ImDrawCornerFlags
+---@field None                          ImDrawCornerFlags 0
+---@field TopLeft                       ImDrawCornerFlags 1
+---@field TopRight                      ImDrawCornerFlags 2
+---@field BotLeft                       ImDrawCornerFlags 3
+---@field BotRight                      ImDrawCornerFlags 4
+---@field Top                           ImDrawCornerFlags 5
+---@field Bot                           ImDrawCornerFlags 6
+---@field Left                          ImDrawCornerFlags 7
+---@field Right                         ImDrawCornerFlags 8
+---@field All                           ImDrawCornerFlags 9
+ImDrawCornerFlags = {}
+
+---@class ImGui
+---@field Begin fun(name: string): bool || fun(name: string, flags: ImGuiWindowFlags): bool || fun(name: string, open: bool): bool, bool || fun(name: string, open: bool, flags: ImGuiWindowFlags): bool, bool
+---@field End fun(): void
+---@field BeginChild fun(name: string): bool || fun(name: string, sizeX: float): bool || fun(name: string, sizeX: float, sizeY: float): bool || fun(name: string, sizeX: float, sizeY: float, border: bool): bool || fun(name: string, sizeX: float, sizeY: float, border: bool, flags: ImGuiWindowFlags): bool
+---@field EndChild fun(): void
+---@field IsWindowAppearing fun(): bool
+---@field IsWindowCollapsed fun(): bool
+---@field IsWindowFocused fun(): bool || fun(flags: ImGuiFocusedFlags): bool
+---@field IsWindowHovered fun(): bool || fun(flags: ImGuiHoveredFlags): bool
+---@field GetWindowDrawList fun(): ImDrawList
+---@field GetWindowPos fun(): float, float
+---@field GetWindowSize fun(): float, float
+---@field GetWindowWidth fun(): float
+---@field GetWindowHeight fun(): float
+---@field SetNextWindowPos fun(posX: float, posY: float): void || fun(posX: float, posY: float, cond: ImGuiCond): void || fun(posX: float, posY: float, cond: ImGuiCond, pivotX: float, pivotY: float): void
+---@field SetNextWindowSize fun(sizeX: float, sizeY: float): void || fun(sizeX: float, sizeY: float, cond: ImGuiCond): void
+---@field SetNextWindowSizeConstraints fun(minX: float, minY: float, maxX: float, maxY: float): void
+---@field SetNextWindowContentSize fun(sizeX: float, sizeY: float): void
+---@field SetNextWindowCollapsed fun(collapsed: bool): void || fun(collapsed: bool, cond: ImGuiCond): void
+---@field SetNextWindowFocus fun(): void
+---@field SetNextWindowBgAlpha fun(alpha: float): void
+---@field SetWindowPos fun(posX: float, posY: float): void || fun(posX: float, posY: float, cond: ImGuiCond): void || fun(name: string, posX: float, posY: float): void || fun(name: string, posX: float, posY: float, cond: ImGuiCond): void
+---@field SetWindowSize fun(sizeX: float, sizeY: float): void || fun(sizeX: float, sizeY: float, cond: ImGuiCond): void || fun(name: string, sizeX: float, sizeY: float): void || fun(name: string, sizeX: float, sizeY: float, cond: ImGuiCond): void
+---@field SetWindowCollapsed fun(collapsed: bool): void || fun(collapsed: bool, cond: ImGuiCond): void || fun(name: string, collapsed: bool): void || fun(name: string, collapsed: bool, cond: ImGuiCond): void
+---@field SetWindowFocus fun(): void || fun(name: string): void
+---@field SetWindowFontScale fun(scale: float): void
+---@field GetContentRegionMax fun(): float, float
+---@field GetContentRegionAvail fun(): float, float
+---@field GetWindowContentRegionMin fun(): float, float
+---@field GetWindowContentRegionMax fun(): float, float
+---@field GetWindowContentRegionWidth fun(): float
+---@field GetScrollX fun(): float
+---@field GetScrollY fun(): float
+---@field GetScrollMaxX fun(): float
+---@field GetScrollMaxY fun(): float
+---@field SetScrollX fun(scrollX: float): void
+---@field SetScrollY fun(scrollY: float): void
+---@field SetScrollHereX fun(): void || fun(centerXRatio: float): void
+---@field SetScrollHereY fun(): void || fun(centerYRatio: float): void
+---@field SetScrollFromPosX fun(localX: float): void || fun(localX: float, centerXRatio: float): void
+---@field SetScrollFromPosY fun(localY: float): void || fun(localY: float, centerYRatio: float): void
+---@field PushFont fun(pFont: ImFont): void
+---@field PopFont fun(): void
+---@field PushStyleColor fun(idx: ImGuiCol, col: int): void || fun(idx: ImGuiCol, colR: float, colG: float, colB: float, colA: float): void
+---@field PopStyleColor fun(): void || fun(count: int): void
+---@field PushStyleVar fun(idx: ImGuiStyleVar, val: float): void || fun(idx: ImGuiStyleVar, valX: float, valY: float): void
+---@field PopStyleVar fun(): void || fun(count: int): void
+---@field GetStyleColorVec4 fun(idx: ImGuiCol): float, float, float, float
+---@field GetFont fun(): ImFont
+---@field GetFontSize fun(): float
+---@field GetFontTexUvWhitePixel fun(): float, float
+---@field GetColorU32 fun(idx: ImGuiCol, alphaMul: float): int || fun(colR: float, colG: float, colB: float, colA: float): int || fun(col: int): int
+---@field PushItemWidth fun(itemWidth: float): void
+---@field PopItemWidth fun(): void
+---@field SetNextItemWidth fun(itemWidth: float): void
+---@field CalcItemWidth fun(): float
+---@field PushTextWrapPos fun(): void || fun(wrapLocalPosX: float): void
+---@field PopTextWrapPos fun(): void
+---@field PushAllowKeyboardFocus fun(allowKeyboardFocus: bool): void
+---@field PopAllowKeyboardFocus fun(): void
+---@field PushButtonRepeat fun(repeat: bool): void
+---@field PopButtonRepeat fun(): void
+---@field Separator fun(): void
+---@field SameLine fun(): void || fun(offsetFromStartX: float): void || fun(offsetFromStartX: float, spacing: float): void
+---@field NewLine fun(): void
+---@field Spacing fun(): void
+---@field Dummy fun(sizeX: float, sizeY: float): void
+---@field Indent fun(): void || fun(indentW: float): void
+---@field Unindent fun(): void || fun(indentW: float): void
+---@field BeginGroup fun(): void
+---@field EndGroup fun(): void
+---@field GetCursorPos fun(): float, float
+---@field GetCursorPosX fun(): float
+---@field GetCursorPosY fun(): float
+---@field SetCursorPos fun(localX: float, localY: float): void
+---@field SetCursorPosX fun(localX: float): void
+---@field SetCursorPosY fun(localY: float): void
+---@field GetCursorStartPos fun(): float, float
+---@field GetCursorScreenPos fun(): float, float
+---@field SetCursorScreenPos fun(posX: float, posY: float): void
+---@field AlignTextToFramePadding fun(): void
+---@field GetTextLineHeight fun(): float
+---@field GetTextLineHeightWithSpacing fun(): float
+---@field GetFrameHeight fun(): float
+---@field GetFrameHeightWithSpacing fun(): float
+---@field PushID fun(stringID: string): void || fun(intID: int): void
+---@field PopID fun(): void
+---@field GetID fun(stringID: string): int
+---@field TextUnformatted fun(text: string): void
+---@field Text fun(text: string)
+---@field TextColored fun(colR: float, colG: float, colB: float, colA: float, text: string): void
+---@field TextDisabled fun(text: string): void
+---@field TextWrapped fun(text: string): void
+---@field LabelText fun(label: string, text: string): void
+---@field BulletText fun(text: string): void
+---@field Button fun(label: string): bool || fun(label: string, sizeX: float, sizeY: float): bool
+---@field SmallButton fun(label: string): bool
+---@field InvisibleButton fun(stringID: string, sizeX: float, sizeY: float): bool
+---@field ArrowButton fun(stringID: string, dir: ImGuiDir): bool
+---@field Checkbox fun(label: string, v: bool): bool, bool
+---@field RadioButton fun(label: string, active: bool): bool || fun(label: string, v: int, vButton: int): int, bool
+---@field ProgressBar fun(fraction: float): void || fun(fraction: float, sizeX: float, sizeY: float): void || fun(fraction: float, sizeX: float, sizeY: float, overlay: string): void
+---@field Bullet fun(): void
+---@field BeginCombo fun(label: string, previewValue: string): bool || fun(label: string, previewValue: string, flags: ImGuiComboFlags): bool
+---@field EndCombo fun(): void
+---@field Combo fun(label: string, currentItem: int, items: string[], itemsCount: int): int, bool || fun(label: string, currentItem: int, items: string[], itemsCount: int, popupMaxHeightInItems: int): int, bool || fun(label: string, currentItem: int, itemsSeparatedByZeros: string): int, bool || fun(label: string, currentItem: int, itemsSeparatedByZeros: string, popupMaxHeightInItems: int): int, bool
+---@field DragFloat fun(label: string, v: float): float, bool || fun(label: string, v: float, v_speed: float): float, bool || fun(label: string, v: float, v_speed: float, v_min: float): float, bool || fun(label: string, v: float, v_speed: float, v_min: float, v_max: float): float, bool || fun(label: string, v: float, v_speed: float, v_min: float, v_max: float, format: string): float, bool || fun(label: string, v: float, v_speed: float, v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float, bool
+---@field DragFloat2 fun(label: string, v: number[]): float[], bool || fun(label: string, v: number[], v_speed: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float, format: string): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float[], bool
+---@field DragFloat3 fun(label: string, v: number[]): float[], bool || fun(label: string, v: number[], v_speed: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float, format: string): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float[], bool
+---@field DragFloat4 fun(label: string, v: number[]): float[], bool || fun(label: string, v: number[], v_speed: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float, format: string): float[], bool || fun(label: string, v: number[], v_speed: float, v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float[], bool
+---@field DragInt fun(label: string, v: int): int, bool || fun(label: string, v: int, v_speed: float): int, bool || fun(label: string, v: int, v_speed: float, v_min: int): int, bool || fun(label: string, v: int, v_speed: float, v_min: int, v_max: int): int, bool || fun(label: string, v: int, v_speed: float, v_min: int, v_max: int, format: string): int, bool || fun(label: string, v: int, v_speed: float, v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int, bool
+---@field DragInt2 fun(label: string, v: number[]): int[], bool || fun(label: string, v: number[], v_speed: float): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int, format: string): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int[], bool
+---@field DragInt3 fun(label: string, v: number[]): int[], bool || fun(label: string, v: number[], v_speed: float): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int, format: string): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int[], bool
+---@field DragInt4 fun(label: string, v: number[]): int[], bool || fun(label: string, v: number[], v_speed: float): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int, format: string): int[], bool || fun(label: string, v: number[], v_speed: float, v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int[], bool
+---@field SliderFloat fun(label: string, v: float, v_min: float, v_max: float): float, bool || fun(label: string, v: float, v_min: float, v_max: float, format: string): float, bool || fun(label: string, v: float, v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float, bool
+---@field SliderFloat2 fun(label: string, v: number[], v_min: float, v_max: float): float[], bool || fun(label: string, v: number[], v_min: float, v_max: float, format: string): float[], bool || fun(label: string, v: number[], v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float[], bool
+---@field SliderFloat3 fun(label: string, v: number[], v_min: float, v_max: float): float[], bool || fun(label: string, v: number[], v_min: float, v_max: float, format: string): float[], bool || fun(label: string, v: number[], v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float[], bool
+---@field SliderFloat4 fun(label: string, v: number[], v_min: float, v_max: float): float[], bool || fun(label: string, v: number[], v_min: float, v_max: float, format: string): float[], bool || fun(label: string, v: number[], v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float[], bool
+---@field SliderAngle fun(label: string, v_rad: float): float, bool || fun(label: string, v_rad: float, v_degrees_min: float): float, bool || fun(label: string, v_rad: float, v_degrees_min: float, v_degrees_max: float): float, bool || fun(label: string, v_rad: float, v_degrees_min: float, v_degrees_max: float, format: string): float, bool || fun(label: string, v_rad: float, v_degrees_min: float, v_degrees_max: float, format: string, flags: ImGuiSliderFlags): float, bool
+---@field SliderInt fun(label: string, v: int, v_min: int, v_max: int): int, bool || fun(label: string, v: int, v_min: int, v_max: int, format: string): int, bool || fun(label: string, v: int, v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int, bool
+---@field SliderInt2 fun(label: string, v: number[], v_min: int, v_max: int): int[], bool || fun(label: string, v: number[], v_min: int, v_max: int, format: string): int[], bool || fun(label: string, v: number[], v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int[], bool
+---@field SliderInt3 fun(label: string, v: number[], v_min: int, v_max: int): int[], bool || fun(label: string, v: number[], v_min: int, v_max: int, format: string): int[], bool || fun(label: string, v: number[], v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int[], bool
+---@field SliderInt4 fun(label: string, v: number[], v_min: int, v_max: int): int[], bool || fun(label: string, v: number[], v_min: int, v_max: int, format: string): int[], bool || fun(label: string, v: number[], v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int[], bool
+---@field VSliderFloat fun(label: string, sizeX: float, sizeY: float, v: float, v_min: float, v_max: float): float, bool || fun(label: string, sizeX: float, sizeY: float, v: float, v_min: float, v_max: float, format: string): float, bool || fun(label: string, sizeX: float, sizeY: float, v: float, v_min: float, v_max: float, format: string, flags: ImGuiSliderFlags): float, bool
+---@field VSliderInt fun(label: string, sizeX: float, sizeY: float, v: int, v_min: int, v_max: int): int, bool || fun(label: string, sizeX: float, sizeY: float, v: int, v_min: int, v_max: int, format: string): int, bool || fun(label: string, sizeX: float, sizeY: float, v: int, v_min: int, v_max: int, format: string, flags: ImGuiSliderFlags): int, bool
+---@field InputText fun(label: string, text: string, buf_size: int): string, bool || fun(label: string, text: string, buf_size: int, flags: ImGuiInputTextFlags): string, bool
+---@field InputTextMultiline fun(label: string, text: string, buf_size: int): string, bool || fun(label: string, text: string, buf_size: int, sizeX: float, sizeY: float): string, bool || fun(label: string, text: string, buf_size: int, sizeX: float, sizeY: float, flags: ImGuiInputTextFlags): string, bool
+---@field InputTextWithHint fun(label: string, hint: string, text: string, buf_size: int): string, bool || fun(label: string, hint: string, text: string, buf_size: int, flags: ImGuiInputTextFlags): string, bool
+---@field InputFloat fun(label: string, v: float): float, bool || fun(label: string, v: float, step: float): float, bool || fun(label: string, v: float, step: float, step_fast: float): float, bool || fun(label: string, v: float, step: float, step_fast: float, format: string): float, bool || fun(label: string, v: float, step: float, step_fast: float, format: string, flags: ImGuiInputTextFlags): float, bool
+---@field InputFloat2 fun(label: string, v: number[]): float[], bool || fun(label: string, v: number[], format: string): float[], bool || fun(label: string, v: number[], format: string, flags: ImGuiInputTextFlags): float[], bool
+---@field InputFloat3 fun(label: string, v: number[]): float[], bool || fun(label: string, v: number[], format: string): float[], bool || fun(label: string, v: number[], format: string, flags: ImGuiInputTextFlags): float[], bool
+---@field InputFloat4 fun(label: string, v: number[]): float[], bool || fun(label: string, v: number[], format: string): float[], bool || fun(label: string, v: number[], format: string, flags: ImGuiInputTextFlags): float[], bool
+---@field InputInt fun(label: string, v: int): int, bool || fun(label: string, v: int, step: int): int, bool || fun(label: string, v: int, step: int, step_fast: int): int, bool || fun(label: string, v: int, step: int, step_fast: int, flags: ImGuiInputTextFlags): int, bool
+---@field InputInt2 fun(label: string, v: number[]): int[], bool || fun(label: string, v: number[], flags: ImGuiInputTextFlags): int[], bool
+---@field InputInt3 fun(label: string, v: number[]): int[], bool || fun(label: string, v: number[], flags: ImGuiInputTextFlags): int[], bool
+---@field InputInt4 fun(label: string, v: number[]): int[], bool || fun(label: string, v: number[], flags: ImGuiInputTextFlags): int[], bool
+---@field InputDouble fun(label: string, v: double): double, bool || fun(label: string, v: double, step: double): double, bool || fun(label: string, v: double, step: double, step_fast: double): double, bool || fun(label: string, v: double, step: double, step_fast: double, format: string): double, bool || fun(label: string, v: double, step: double, step_fast: double, format: string, flags: ImGuiInputTextFlags): double, bool
+---@field ColorEdit3 fun(label: string, col: number[]): float[], bool || fun(label: string, col: number[], flags: ImGuiColorEditFlags): float[], bool
+---@field ColorEdit4 fun(label: string, col: number[]): float[], bool || fun(label: string, col: number[], flags: ImGuiColorEditFlags): float[], bool
+---@field ColorPicker3 fun(label: string, col: number[]): float[], bool || fun(label: string, col: number[], flags: ImGuiColorEditFlags): float[], bool
+---@field ColorPicker4 fun(label: string, col: number[]): float[], bool || fun(label: string, col: number[], flags: ImGuiColorEditFlags): float[], bool
+---@field ColorButton fun(desc_id: string, col: number[]): bool || fun(desc_id: string, col: number[], flags: ImGuiColorEditFlags): bool || fun(desc_id: string, col: number[], flags: ImGuiColorEditFlags, sizeX: float, sizeY: float): bool
+---@field SetColorEditOptions fun(flags: ImGuiColorEditFlags): void
+---@field TreeNode fun(label: string): bool || fun(label: string, fmt: string): bool
+---@field TreeNodeEx fun(label: string): bool || fun(label: string, flags: ImGuiTreeNodeFlags): bool || fun(label: string, flags: ImGuiTreeNodeFlags, fmt: string): bool
+---@field TreePush fun(str_id: string): void
+---@field TreePop fun(): void
+---@field GetTreeNodeToLabelSpacing fun(): float
+---@field CollapsingHeader fun(label: string): bool || fun(label: string, flags: ImGuiTreeNodeFlags): bool || fun(label: string, open: bool): bool, bool || fun(label: string, open: bool, flags: ImGuiTreeNodeFlags): bool, bool
+---@field SetNextItemOpen fun(is_open: bool): void || fun(is_open: bool, cond: ImGuiCond): void
+---@field Selectable fun(label: string): bool || fun(label: string, selected: bool): bool || fun(label: string, selected: bool, flags: ImGuiSelectableFlags): bool || fun(label: string, selected: bool, flags: ImGuiSelectableFlags, sizeX: float, sizeY: float): bool
+---@field ListBox fun(label: string, current_item: int, items: string[], items_count: int): int, bool || fun(label: string, current_item: int, items: string[], items_count: int, height_in_items: int): int, bool
+---@field BeginListBox fun(label: string): bool || fun(label: string, sizeX: float, sizeY: float): bool
+---@field EndListBox fun(): void
+---@field Value fun(prefix: string, b: bool): void || fun(prefix: string, v: int): void || fun(prefix: string, v: int): void || fun(prefix: string, v: float): void || fun(prefix: string, v: float, float_format: string): void
+---@field BeginMenuBar fun(): bool
+---@field EndMenuBar fun(): void
+---@field BeginMainMenuBar fun(): bool
+---@field EndMainMenuBar fun(): void
+---@field BeginMenu fun(label: string): bool || fun(label: string, enabled: bool): bool
+---@field EndMenu fun(): void
+---@field MenuItem fun(label: string): bool || fun(label: string, shortcut: string): bool || fun(label: string, shortcut: string, selected: bool): bool, bool || fun(label: string, shortcut: string, selected: bool, enabled: bool): bool, bool
+---@field BeginTooltip fun(): void
+---@field EndTooltip fun(): void
+---@field SetTooltip fun(fmt: string): void
+---@field BeginPopup fun(str_id: string): bool || fun(str_id: string, flags: ImGuiWindowFlags): bool
+---@field BeginPopupModal fun(name: string): bool || fun(name: string, flags: ImGuiWindowFlags): bool || fun(name: string, open: bool): bool || fun(name: string, open: bool, flags: ImGuiWindowFlags): bool
+---@field EndPopup fun(): void
+---@field OpenPopup fun(str_id: string): void || fun(str_id: string, popup_flags: ImGuiPopupFlags): void
+---@field CloseCurrentPopup fun(): void
+---@field BeginPopupContextItem fun(): bool || fun(str_id: string): bool || fun(str_id: string, popup_flags: ImGuiPopupFlags): bool
+---@field BeginPopupContextWindow fun(): bool || fun(str_id: string): bool || fun(str_id: string, popup_flags: ImGuiPopupFlags): bool
+---@field BeginPopupContextVoid fun(): bool || fun(str_id: string): bool || fun(str_id: string, popup_flags: ImGuiPopupFlags): bool
+---@field IsPopupOpen fun(str_id: string): bool || fun(str_id: string, popup_flags: ImGuiPopupFlags): bool
+---@field BeginTable fun(str_id: string, columns: int): bool || fun(str_id: string, columns: int, flags: ImGuiTableFlags): bool || fun(str_id: string, columns: int, flags: ImGuiTableFlags, outer_sizeX: float, outer_sizeY: float): bool || fun(str_id: string, columns: int, flags: ImGuiTableFlags, outer_sizeX: float, outer_sizeY: float, inner_width: float): bool
+---@field EndTable fun(): void
+---@field TableNextRow fun(): void || fun(flags: ImGuiTableRowFlags): void || fun(flags: ImGuiTableRowFlags, min_row_height: float): void
+---@field TableNextColumn fun(): bool
+---@field TableSetColumnIndex fun(column_n: int): bool
+---@field TableSetupColumn fun(label: string): void || fun(label: string, flags: ImGuiTableColumnFlags): void || fun(label: string, flags: ImGuiTableColumnFlags, init_width_or_weight: float): void || fun(label: string, flags: ImGuiTableColumnFlags, init_width_or_weight: float, user_id: int): void
+---@field TableSetupScrollFreeze fun(cols: int, rows: int): void
+---@field TableHeadersRow fun(): void
+---@field TableHeader fun(label: string): void
+---@field TableGetSortSpecs fun(): ImGuiTableSortSpecs
+---@field TableGetColumnCount fun(): int
+---@field TableGetColumnIndex fun(): int
+---@field TableGetRowIndex fun(): int
+---@field TableGetColumnName fun(): string || fun(column_n: int): string
+---@field TableGetColumnFlags fun(): ImGuiTableColumnFlags || fun(column_n: int): ImGuiTableColumnFlags
+---@field TableSetBgColor fun(target: ImGuiTableBgTarget, color: int): void || fun(target: ImGuiTableBgTarget, colR: float, colG: float, colB: float, colA: float): void || fun(target: ImGuiTableBgTarget, color: int, column_n: int): void || fun(target: ImGuiTableBgTarget, colR: float, colG: float, colB: float, colA: float, column_n: int): void
+---@field Columns fun(): void || fun(count: int): void || fun(count: int, id: string): void || fun(count: int, id: string, border: bool): void
+---@field NextColumn fun(): void
+---@field GetColumnIndex fun(): int
+---@field GetColumnWidth fun(): float || fun(column_index: int): float
+---@field SetColumnWidth fun(column_index: int, width: float): void
+---@field GetColumnOffset fun(): float || fun(column_index: int): float
+---@field SetColumnOffset fun(column_index: int, offset_x: float): void
+---@field GetColumnsCount fun(): int
+---@field BeginTabBar fun(str_id: string): bool || fun(str_id: string, flags: ImGuiTabBarFlags): bool
+---@field EndTabBar fun(): void
+---@field BeginTabItem fun(label: string): bool || fun(label: string, flags: ImGuiTabItemFlags): bool || fun(label: string, open: bool): bool, bool || fun(label: string, open: bool, flags: ImGuiTabItemFlags): bool, bool
+---@field EndTabItem fun(): void
+---@field SetTabItemClosed fun(tab_or_docked_window_label: string): void
+---@field BeginDisabled fun(): void || fun(disabled: bool): void
+---@field EndDisabled fun(): void
+---@field PushClipRect fun(min_x: float, min_y: float, max_x: float, max_y: float, intersect_current: bool): void
+---@field PopClipRect fun(): void
+---@field SetItemDefaultFocus fun(): void
+---@field SetKeyboardFocusHere fun(): void || fun(offset: int): void
+---@field IsItemHovered fun(): bool || fun(flags: ImGuiHoveredFlags): bool
+---@field IsItemActive fun(): bool
+---@field IsItemFocused fun(): bool
+---@field IsItemClicked fun(): bool || fun(target: ImGuiMouseButton): bool
+---@field IsItemVisible fun(): bool
+---@field IsItemEdited fun(): bool
+---@field IsItemActivated fun(): bool
+---@field IsItemDeactivated fun(): bool
+---@field IsItemDeactivatedAfterEdit fun(): bool
+---@field IsItemToggledOpen fun(): bool
+---@field IsAnyItemHovered fun(): bool
+---@field IsAnyItemActive fun(): bool
+---@field IsAnyItemFocused fun(): bool
+---@field GetItemRectMin fun(): float, float
+---@field GetItemRectMax fun(): float, float
+---@field GetItemRectSize fun(): float, float
+---@field SetItemAllowOverlap fun(): void
+---@field IsRectVisible fun(sizeX: float, sizeY: float): bool || fun(minX: float, minY: float, maxX: float, maxY: float): bool
+---@field GetTime fun(): double
+---@field GetFrameCount fun(): int
+---@field GetBackgroundDrawList fun(): ImDrawList
+---@field GetForegroundDrawList fun(): ImDrawList
+---@field GetStyleColorName fun(idx: ImGuiCol): string
+---@field BeginChildFrame fun(id: int, sizeX: float, sizeY: float): bool || fun(id: int, sizeX: float, sizeY: float, flags: ImGuiWindowFlags): bool
+---@field EndChildFrame fun(): void
+---@field GetStyle fun(): ImGuiStyle
+---@field CalcTextSize fun(text: string): float, float || fun(text: string, hide_text_after_double_hash: bool): float, float || fun(text: string, hide_text_after_double_hash: bool, wrap_width: float): float, float
+---@field ColorConvertU32ToFloat4 fun(in: int): float[]
+---@field ColorConvertFloat4ToU32 fun(rgba: number[]): int
+---@field ColorConvertRGBtoHSV fun(r: float, g: float, b: float): float, float, float
+---@field ColorConvertHSVtoRGB fun(h: float, s: float, v: float): float, float, float
+---@field IsMouseHoveringRect fun(min_x: float, min_y: float, max_x: float, max_y: float): bool || fun(min_x: float, min_y: float, max_x: float, max_y: float, clip: bool): bool
+---@field GetMousePos fun(): float, float
+---@field GetMousePosOnOpeningCurrentPopup fun(): float, float
+---@field IsMouseDragging fun(button: ImGuiMouseButton): bool || fun(button: ImGuiMouseButton, lock_threshold: float): bool
+---@field GetMouseDragDelta fun(): float, float || fun(button: ImGuiMouseButton): float, float || fun(button: ImGuiMouseButton, lock_threshold: float): float, float
+---@field ResetMouseDragDelta fun(): void || fun(button: ImGuiMouseButton): void
+---@field GetClipboardText fun(): string
+---@field SetClipboardText fun(text: string): void
+---@field ImDrawListAddLine fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, col: int): void || fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, col: int, thickness: float): void
+---@field ImDrawListAddRect fun(drawlist: ImDrawList, p_minX: float, p_minY: float, p_maxX: float, p_maxY: float, col: int): void || fun(drawlist: ImDrawList, p_minX: float, p_minY: float, p_maxX: float, p_maxY: float, col: int, rounding: float): void || fun(drawlist: ImDrawList, p_minX: float, p_minY: float, p_maxX: float, p_maxY: float, col: int, rounding: float, flags: ImDrawFlags): void || fun(drawlist: ImDrawList, p_minX: float, p_minY: float, p_maxX: float, p_maxY: float, col: int, rounding: float, flags: ImDrawFlags, thickness: float): void
+---@field ImDrawListAddRectFilled fun(drawlist: ImDrawList, p_minX: float, p_minY: float, p_maxX: float, p_maxY: float, col: int): void || fun(drawlist: ImDrawList, p_minX: float, p_minY: float, p_maxX: float, p_maxY: float, col: int, rounding: float): void || fun(drawlist: ImDrawList, p_minX: float, p_minY: float, p_maxX: float, p_maxY: float, col: int, rounding: float, flags: ImDrawFlags): void
+---@field ImDrawListAddRectFilledMultiColor fun(drawlist: ImDrawList, p_minX: float, p_minY: float, p_maxX: float, p_maxY: float, col_upr_left: int, col_upr_right: int, col_bot_right: int, col_bot_left: int): void
+---@field ImDrawListAddQuad fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, p4X: float, p4Y: float, col: int): void || fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, p4X: float, p4Y: float, col: int, thickness: float): void
+---@field ImDrawListAddQuadFilled fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, p4X: float, p4Y: float, col: int): void
+---@field ImDrawListAddTriangle fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, col: int): void || fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, col: int, thickness: float): void
+---@field ImDrawListAddTriangleFilled fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, col: int): void
+---@field ImDrawListAddCircle fun(drawlist: ImDrawList, centerX: float, centerY: float, radius: float, col: int): void || fun(drawlist: ImDrawList, centerX: float, centerY: float, radius: float, col: int, num_segments: int): void || fun(drawlist: ImDrawList, centerX: float, centerY: float, radius: float, col: int, num_segments: int, thickness: float): void
+---@field ImDrawListAddCircleFilled fun(drawlist: ImDrawList, centerX: float, centerY: float, radius: float, col: int): void || fun(drawlist: ImDrawList, centerX: float, centerY: float, radius: float, col: int, num_segments: int): void
+---@field ImDrawListAddNgon fun(drawlist: ImDrawList, centerX: float, centerY: float, radius: float, col: int, num_segments: int): void || fun(drawlist: ImDrawList, centerX: float, centerY: float, radius: float, col: int, num_segments: int, thickness: float): void
+---@field ImDrawListAddNgonFilled fun(drawlist: ImDrawList, centerX: float, centerY: float, radius: float, col: int, num_segments: int): void
+---@field ImDrawListAddText fun(drawlist: ImDrawList, posX: float, posY: float, col: int, text_begin: string): void || fun(drawlist: ImDrawList, font_size: float, posX: float, posY: float, col: int, text_begin: string): void || fun(drawlist: ImDrawList, font_size: float, posX: float, posY: float, col: int, text_begin: string, wrap_width: float): void
+---@field ImDrawListAddBezierCubic fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, p4X: float, p4Y: float, col: int, thickness: float): void || fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, p4X: float, p4Y: float, col: int, thickness: float, num_segments: int): void
+---@field ImDrawListAddBezierQuadratic fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, col: int, thickness: float): void || fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, col: int, thickness: float, num_segments: int): void
+ImGui = {}
