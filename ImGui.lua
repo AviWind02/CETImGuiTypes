@@ -1,7 +1,11 @@
+---@meta
+---@diagnostic disable
+
 ---@alias float number
 ---@alias bool boolean
 ---@alias int number
 ---@alias double number
+---@alias void nil
 
 ---@class ImDrawList
 ---@class ImFont
@@ -62,6 +66,10 @@ ImVec4 = {}
 ---@field CircleTessellationMaxError    float
 ---@field ScaleAllSizes                 fun(scale_factor: float)
 ImGuiStyle = {}
+
+---@class ImguiTexture
+---@field size                          ImVec2
+---@field Release                       fun(): void
 
 ---@class ImGuiWindowFlags
 ---@field None                          ImGuiWindowFlags 0
@@ -743,4 +751,6 @@ ImDrawCornerFlags = {}
 ---@field ImDrawListAddText fun(drawlist: ImDrawList, posX: float, posY: float, col: int, text_begin: string): void || fun(drawlist: ImDrawList, font_size: float, posX: float, posY: float, col: int, text_begin: string): void || fun(drawlist: ImDrawList, font_size: float, posX: float, posY: float, col: int, text_begin: string, wrap_width: float): void
 ---@field ImDrawListAddBezierCubic fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, p4X: float, p4Y: float, col: int, thickness: float): void || fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, p4X: float, p4Y: float, col: int, thickness: float, num_segments: int): void
 ---@field ImDrawListAddBezierQuadratic fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, col: int, thickness: float): void || fun(drawlist: ImDrawList, p1X: float, p1Y: float, p2X: float, p2Y: float, p3X: float, p3Y: float, col: int, thickness: float, num_segments: int): void
+---@field LoadTexture fun(path: string): ImguiTexture
+---@field Image fun(texture: ImguiTexture, size: ImVec2?, uv0: ImVec2?, uv1: ImVec2?, tint_col: ImVec4?, border_col: ImVec4?): void
 ImGui = {}
