@@ -71,422 +71,445 @@ ImGuiStyle = {}
 ---@field size                          ImVec2
 ---@field Release                       fun(): void
 
----@class ImGuiWindowFlags
----@field None                          ImGuiWindowFlags 0
----@field NoTitleBar                    ImGuiWindowFlags 1
----@field NoResize                      ImGuiWindowFlags 2
----@field NoMove                        ImGuiWindowFlags 3
----@field NoScrollbar                   ImGuiWindowFlags 4
----@field NoScrollWithMouse             ImGuiWindowFlags 5
----@field NoCollapse                    ImGuiWindowFlags 6
----@field AlwaysAutoResize              ImGuiWindowFlags 7
----@field NoBackground                  ImGuiWindowFlags 8
----@field NoSavedSettings               ImGuiWindowFlags 9
----@field NoMouseInputs                 ImGuiWindowFlags 10
----@field MenuBar                       ImGuiWindowFlags 11
----@field HorizontalScrollbar           ImGuiWindowFlags 12
----@field NoFocusOnAppearing            ImGuiWindowFlags 13
----@field NoBringToFrontOnFocus         ImGuiWindowFlags 14
----@field AlwaysVerticalScrollbar       ImGuiWindowFlags 15
----@field AlwaysHorizontalScrollbar     ImGuiWindowFlags 16
----@field AlwaysUseWindowPadding        ImGuiWindowFlags 17
----@field NoNavInputs                   ImGuiWindowFlags 18
----@field NoNavFocus                    ImGuiWindowFlags 19
----@field UnsavedDocument               ImGuiWindowFlags 20
----@field NoNav                         ImGuiWindowFlags 21
----@field NoDecoration                  ImGuiWindowFlags 22
----@field NoInputs                      ImGuiWindowFlags 23
----@field NavFlattened                  ImGuiWindowFlags 24
----@field ChildWindow                   ImGuiWindowFlags 25
----@field Tooltip                       ImGuiWindowFlags 26
----@field Popup                         ImGuiWindowFlags 27
----@field Modal                         ImGuiWindowFlags 28
----@field ChildMenu                     ImGuiWindowFlags 29
-ImGuiWindowFlags = {}
+---@enum ImGuiWindowFlags
+ImGuiWindowFlags = {
+    None                          = 0,
+    NoTitleBar                    = 1,
+    NoResize                      = 2,
+    NoMove                        = 3,
+    NoScrollbar                   = 4,
+    NoScrollWithMouse             = 5,
+    NoCollapse                    = 6,
+    AlwaysAutoResize              = 7,
+    NoBackground                  = 8,
+    NoSavedSettings               = 9,
+    NoMouseInputs                 = 10,
+    MenuBar                       = 11,
+    HorizontalScrollbar           = 12,
+    NoFocusOnAppearing            = 13,
+    NoBringToFrontOnFocus         = 14,
+    AlwaysVerticalScrollbar       = 15,
+    AlwaysHorizontalScrollbar     = 16,
+    AlwaysUseWindowPadding        = 17,
+    NoNavInputs                   = 18,
+    NoNavFocus                    = 19,
+    UnsavedDocument               = 20,
+    NoNav                         = 21,
+    NoDecoration                  = 22,
+    NoInputs                      = 23,
+    NavFlattened                  = 24,
+    ChildWindow                   = 25,
+    Tooltip                       = 26,
+    Popup                         = 27,
+    Modal                         = 28,
+    ChildMenu                     = 29,
+}
 
----@class ImGuiFocusedFlags
----@field None                          ImGuiFocusedFlags 0
----@field ChildWindows                  ImGuiFocusedFlags 1
----@field RootWindow                    ImGuiFocusedFlags 2
----@field AnyWindow                     ImGuiFocusedFlags 3
----@field RootAndChildWindows           ImGuiFocusedFlags 4
-ImGuiFocusedFlags = {}
+---@enum ImGuiFocusedFlags
+ImGuiFocusedFlags = {
+    None                          = 0,
+    ChildWindows                  = 1,
+    RootWindow                    = 2,
+    AnyWindow                     = 3,
+    RootAndChildWindows           = 4,
+}
 
----@class ImGuiHoveredFlags
----@field None                          ImGuiHoveredFlags 0
----@field ChildWindows                  ImGuiHoveredFlags 1
----@field RootWindow                    ImGuiHoveredFlags 2
----@field AnyWindow                     ImGuiHoveredFlags 3
----@field AllowWhenBlockedByPopup       ImGuiHoveredFlags 4
----@field AllowWhenBlockedByActiveItem  ImGuiHoveredFlags 5
----@field AllowWhenOverlapped           ImGuiHoveredFlags 6
----@field AllowWhenDisabled             ImGuiHoveredFlags 7
----@field RectOnly                      ImGuiHoveredFlags 8
----@field RootAndChildWindows           ImGuiHoveredFlags 9
-ImGuiHoveredFlags = {}
+---@enum ImGuiHoveredFlags
+ImGuiHoveredFlags = {
+    None                          = 0,
+    ChildWindows                  = 1,
+    RootWindow                    = 2,
+    AnyWindow                     = 3,
+    AllowWhenBlockedByPopup       = 4,
+    AllowWhenBlockedByActiveItem  = 5,
+    AllowWhenOverlapped           = 6,
+    AllowWhenDisabled             = 7,
+    RectOnly                      = 8,
+    RootAndChildWindows           = 9,
+}
 
----@class ImGuiCond
----@field None                          ImGuiCond 0
----@field Always                        ImGuiCond 1
----@field Once                          ImGuiCond 2
----@field FirstUseEver                  ImGuiCond 3
----@field Appearing                     ImGuiCond 4
-ImGuiCond = {}
+---@enum ImGuiCond
+ImGuiCond = {
+    None                          = 0,
+    Always                        = 1,
+    Once                          = 2,
+    FirstUseEver                  = 3,
+    Appearing                     = 4,
+}
 
----@class ImGuiCol
----@field Text                          ImGuiCol 0
----@field TextDisabled                  ImGuiCol 1
----@field WindowBg                      ImGuiCol 2
----@field ChildBg                       ImGuiCol 3
----@field PopupBg                       ImGuiCol 4
----@field Border                        ImGuiCol 5
----@field BorderShadow                  ImGuiCol 6
----@field FrameBg                       ImGuiCol 7
----@field FrameBgHovered                ImGuiCol 8
----@field FrameBgActive                 ImGuiCol 9
----@field TitleBg                       ImGuiCol 10
----@field TitleBgActive                 ImGuiCol 11
----@field TitleBgCollapsed              ImGuiCol 12
----@field MenuBarBg                     ImGuiCol 13
----@field ScrollbarBg                   ImGuiCol 14
----@field ScrollbarGrab                 ImGuiCol 15
----@field ScrollbarGrabHovered          ImGuiCol 16
----@field ScrollbarGrabActive           ImGuiCol 17
----@field CheckMark                     ImGuiCol 18
----@field SliderGrab                    ImGuiCol 19
----@field SliderGrabActive              ImGuiCol 20
----@field Button                        ImGuiCol 21
----@field ButtonHovered                 ImGuiCol 22
----@field ButtonActive                  ImGuiCol 23
----@field Header                        ImGuiCol 24
----@field HeaderHovered                 ImGuiCol 25
----@field HeaderActive                  ImGuiCol 26
----@field Separator                     ImGuiCol 27
----@field SeparatorHovered              ImGuiCol 28
----@field SeparatorActive               ImGuiCol 29
----@field ResizeGrip                    ImGuiCol 30
----@field ResizeGripHovered             ImGuiCol 31
----@field ResizeGripActive              ImGuiCol 32
----@field Tab                           ImGuiCol 33
----@field TabHovered                    ImGuiCol 34
----@field TabActive                     ImGuiCol 35
----@field TabUnfocused                  ImGuiCol 36
----@field TabUnfocusedActive            ImGuiCol 37
----@field PlotLines                     ImGuiCol 38
----@field PlotLinesHovered              ImGuiCol 39
----@field PlotHistogram                 ImGuiCol 40
----@field PlotHistogramHovered          ImGuiCol 41
----@field TableHeaderBg                 ImGuiCol 42
----@field TableBorderStrong             ImGuiCol 43
----@field TableBorderLight              ImGuiCol 44
----@field TableRowBg                    ImGuiCol 45
----@field TableRowBgAlt                 ImGuiCol 46
----@field TextSelectedBg                ImGuiCol 47
----@field DragDropTarget                ImGuiCol 48
----@field NavHighlight                  ImGuiCol 49
----@field NavWindowingHighlight         ImGuiCol 50
----@field NavWindowingDimBg             ImGuiCol 51
----@field ModalWindowDimBg              ImGuiCol 52
----@field COUNT                         ImGuiCol 53
-ImGuiCol = {}
+---@enum ImGuiCol
+ImGuiCol = {
+    Text                          = 0,
+    TextDisabled                  = 1,
+    WindowBg                      = 2,
+    ChildBg                       = 3,
+    PopupBg                       = 4,
+    Border                        = 5,
+    BorderShadow                  = 6,
+    FrameBg                       = 7,
+    FrameBgHovered                = 8,
+    FrameBgActive                 = 9,
+    TitleBg                       = 10,
+    TitleBgActive                 = 11,
+    TitleBgCollapsed              = 12,
+    MenuBarBg                     = 13,
+    ScrollbarBg                   = 14,
+    ScrollbarGrab                 = 15,
+    ScrollbarGrabHovered          = 16,
+    ScrollbarGrabActive           = 17,
+    CheckMark                     = 18,
+    SliderGrab                    = 19,
+    SliderGrabActive              = 20,
+    Button                        = 21,
+    ButtonHovered                 = 22,
+    ButtonActive                  = 23,
+    Header                        = 24,
+    HeaderHovered                 = 25,
+    HeaderActive                  = 26,
+    Separator                     = 27,
+    SeparatorHovered              = 28,
+    SeparatorActive               = 29,
+    ResizeGrip                    = 30,
+    ResizeGripHovered             = 31,
+    ResizeGripActive              = 32,
+    Tab                           = 33,
+    TabHovered                    = 34,
+    TabActive                     = 35,
+    TabUnfocused                  = 36,
+    TabUnfocusedActive            = 37,
+    PlotLines                     = 38,
+    PlotLinesHovered              = 39,
+    PlotHistogram                 = 40,
+    PlotHistogramHovered          = 41,
+    TableHeaderBg                 = 42,
+    TableBorderStrong             = 43,
+    TableBorderLight              = 44,
+    TableRowBg                    = 45,
+    TableRowBgAlt                 = 46,
+    TextSelectedBg                = 47,
+    DragDropTarget                = 48,
+    NavHighlight                  = 49,
+    NavWindowingHighlight         = 50,
+    NavWindowingDimBg             = 51,
+    ModalWindowDimBg              = 52,
+    COUNT                         = 53,
+}
 
----@class ImGuiStyleVar
----@field Alpha                         ImGuiStyleVar 0
----@field DisabledAlpha                 ImGuiStyleVar 1
----@field WindowPadding                 ImGuiStyleVar 2
----@field WindowRounding                ImGuiStyleVar 3
----@field WindowBorderSize              ImGuiStyleVar 4
----@field WindowMinSize                 ImGuiStyleVar 5
----@field WindowTitleAlign              ImGuiStyleVar 6
----@field ChildRounding                 ImGuiStyleVar 7
----@field ChildBorderSize               ImGuiStyleVar 8
----@field PopupRounding                 ImGuiStyleVar 9
----@field PopupBorderSize               ImGuiStyleVar 10
----@field FramePadding                  ImGuiStyleVar 11
----@field FrameRounding                 ImGuiStyleVar 12
----@field FrameBorderSize               ImGuiStyleVar 13
----@field ItemSpacing                   ImGuiStyleVar 14
----@field ItemInnerSpacing              ImGuiStyleVar 15
----@field IndentSpacing                 ImGuiStyleVar 16
----@field CellPadding                   ImGuiStyleVar 17
----@field ScrollbarSize                 ImGuiStyleVar 18
----@field ScrollbarRounding             ImGuiStyleVar 19
----@field GrabMinSize                   ImGuiStyleVar 20
----@field GrabRounding                  ImGuiStyleVar 21
----@field TabRounding                   ImGuiStyleVar 22
----@field SelectableTextAlign           ImGuiStyleVar 23
----@field ButtonTextAlign               ImGuiStyleVar 24
----@field COUNT                         ImGuiStyleVar 25
-ImGuiStyleVar = {}
+---@enum ImGuiStyleVar
+ImGuiStyleVar = {
+    Alpha                         = 0,
+    DisabledAlpha                 = 1,
+    WindowPadding                 = 2,
+    WindowRounding                = 3,
+    WindowBorderSize              = 4,
+    WindowMinSize                 = 5,
+    WindowTitleAlign              = 6,
+    ChildRounding                 = 7,
+    ChildBorderSize               = 8,
+    PopupRounding                 = 9,
+    PopupBorderSize               = 10,
+    FramePadding                  = 11,
+    FrameRounding                 = 12,
+    FrameBorderSize               = 13,
+    ItemSpacing                   = 14,
+    ItemInnerSpacing              = 15,
+    IndentSpacing                 = 16,
+    CellPadding                   = 17,
+    ScrollbarSize                 = 18,
+    ScrollbarRounding             = 19,
+    GrabMinSize                   = 20,
+    GrabRounding                  = 21,
+    TabRounding                   = 22,
+    SelectableTextAlign           = 23,
+    ButtonTextAlign               = 24,
+    COUNT                         = 25,
+}
 
----@class ImGuiDir
----@field None                          ImGuiDir 0
----@field Left                          ImGuiDir 1
----@field Right                         ImGuiDir 2
----@field Up                            ImGuiDir 3
----@field Down                          ImGuiDir 4
----@field COUNT                         ImGuiDir 5
-ImGuiDir = {}
+---@enum ImGuiDir
+ImGuiDir = {
+    None                          = 0,
+    Left                          = 1,
+    Right                         = 2,
+    Up                            = 3,
+    Down                          = 4,
+    COUNT                         = 5,
+}
 
----@class ImGuiComboFlags
----@field None                          ImGuiComboFlags 0
----@field PopupAlignLeft                ImGuiComboFlags 1
----@field HeightSmall                   ImGuiComboFlags 2
----@field HeightRegular                 ImGuiComboFlags 3
----@field HeightLarge                   ImGuiComboFlags 4
----@field HeightLargest                 ImGuiComboFlags 5
----@field NoArrowButton                 ImGuiComboFlags 6
----@field NoPreview                     ImGuiComboFlags 7
----@field HeightMask                    ImGuiComboFlags 8
-ImGuiComboFlags = {}
+---@enum ImGuiComboFlags
+ImGuiComboFlags = {
+    None                          = 0,
+    PopupAlignLeft                = 1,
+    HeightSmall                   = 2,
+    HeightRegular                 = 3,
+    HeightLarge                   = 4,
+    HeightLargest                 = 5,
+    NoArrowButton                 = 6,
+    NoPreview                     = 7,
+    HeightMask                    = 8,
+}
 
----@class ImGuiInputTextFlags
----@field None                          ImGuiInputTextFlags 0
----@field CharsDecimal                  ImGuiInputTextFlags 1
----@field CharsHexadecimal              ImGuiInputTextFlags 2
----@field CharsUppercase                ImGuiInputTextFlags 3
----@field CharsNoBlank                  ImGuiInputTextFlags 4
----@field AutoSelectAll                 ImGuiInputTextFlags 5
----@field EnterReturnsTrue              ImGuiInputTextFlags 6
----@field CallbackCompletion            ImGuiInputTextFlags 7
----@field CallbackHistory               ImGuiInputTextFlags 8
----@field CallbackAlways                ImGuiInputTextFlags 9
----@field CallbackCharFilter            ImGuiInputTextFlags 10
----@field AllowTabInput                 ImGuiInputTextFlags 11
----@field CtrlEnterForNewLine           ImGuiInputTextFlags 12
----@field NoHorizontalScroll            ImGuiInputTextFlags 13
----@field AlwaysOverwrite               ImGuiInputTextFlags 14
----@field ReadOnly                      ImGuiInputTextFlags 15
----@field Password                      ImGuiInputTextFlags 16
----@field NoUndoRedo                    ImGuiInputTextFlags 17
----@field CharsScientific               ImGuiInputTextFlags 18
----@field CallbackResize                ImGuiInputTextFlags 19
----@field CallbackEdit                  ImGuiInputTextFlags 20
-ImGuiInputTextFlags = {}
+---@enum ImGuiInputTextFlags
+ImGuiInputTextFlags = {
+    None                          = 0,
+    CharsDecimal                  = 1,
+    CharsHexadecimal              = 2,
+    CharsUppercase                = 3,
+    CharsNoBlank                  = 4,
+    AutoSelectAll                 = 5,
+    EnterReturnsTrue              = 6,
+    CallbackCompletion            = 7,
+    CallbackHistory               = 8,
+    CallbackAlways                = 9,
+    CallbackCharFilter            = 10,
+    AllowTabInput                 = 11,
+    CtrlEnterForNewLine           = 12,
+    NoHorizontalScroll            = 13,
+    AlwaysOverwrite               = 14,
+    ReadOnly                      = 15,
+    Password                      = 16,
+    NoUndoRedo                    = 17,
+    CharsScientific               = 18,
+    CallbackResize                = 19,
+    CallbackEdit                  = 20,
+}
 
----@class ImGuiSliderFlags
----@field None                          ImGuiSliderFlags 0
----@field ClampOnInput                  ImGuiSliderFlags 1
----@field Logarithmic                   ImGuiSliderFlags 2
----@field NoRoundToFormat               ImGuiSliderFlags 3
----@field NoInput                       ImGuiSliderFlags 4
-ImGuiSliderFlags = {}
+---@enum ImGuiSliderFlags
+ImGuiSliderFlags = {
+    None                          = 0,
+    ClampOnInput                  = 1,
+    Logarithmic                   = 2,
+    NoRoundToFormat               = 3,
+    NoInput                       = 4,
+}
 
----@class ImGuiColorEditFlags
----@field None                          ImGuiColorEditFlags 0
----@field NoAlpha                       ImGuiColorEditFlags 1
----@field NoPicker                      ImGuiColorEditFlags 2
----@field NoOptions                     ImGuiColorEditFlags 3
----@field NoSmallPreview                ImGuiColorEditFlags 4
----@field NoInputs                      ImGuiColorEditFlags 5
----@field NoTooltip                     ImGuiColorEditFlags 6
----@field NoLabel                       ImGuiColorEditFlags 7
----@field NoSidePreview                 ImGuiColorEditFlags 8
----@field NoDragDrop                    ImGuiColorEditFlags 9
----@field NoBorder                      ImGuiColorEditFlags 10
----@field AlphaBar                      ImGuiColorEditFlags 11
----@field AlphaPreview                  ImGuiColorEditFlags 12
----@field AlphaPreviewHalf              ImGuiColorEditFlags 13
----@field HDR                           ImGuiColorEditFlags 14
----@field DisplayRGB                    ImGuiColorEditFlags 15
----@field DisplayHSV                    ImGuiColorEditFlags 16
----@field DisplayHex                    ImGuiColorEditFlags 17
----@field Uint8                         ImGuiColorEditFlags 18
----@field Float                         ImGuiColorEditFlags 19
----@field PickerHueBar                  ImGuiColorEditFlags 20
----@field PickerHueWheel                ImGuiColorEditFlags 21
----@field InputRGB                      ImGuiColorEditFlags 22
----@field InputHSV                      ImGuiColorEditFlags 23
----@field _OptionsDefault               ImGuiColorEditFlags 24
----@field _DisplayMask                  ImGuiColorEditFlags 25
----@field _DataTypeMask                 ImGuiColorEditFlags 26
----@field _PickerMask                   ImGuiColorEditFlags 27
----@field _InputMask                    ImGuiColorEditFlags 28
-ImGuiColorEditFlags = {}
+---@enum ImGuiColorEditFlags
+ImGuiColorEditFlags = {
+    None                          = 0,
+    NoAlpha                       = 1,
+    NoPicker                      = 2,
+    NoOptions                     = 3,
+    NoSmallPreview                = 4,
+    NoInputs                      = 5,
+    NoTooltip                     = 6,
+    NoLabel                       = 7,
+    NoSidePreview                 = 8,
+    NoDragDrop                    = 9,
+    NoBorder                      = 10,
+    AlphaBar                      = 11,
+    AlphaPreview                  = 12,
+    AlphaPreviewHalf              = 13,
+    HDR                           = 14,
+    DisplayRGB                    = 15,
+    DisplayHSV                    = 16,
+    DisplayHex                    = 17,
+    Uint8                         = 18,
+    Float                         = 19,
+    PickerHueBar                  = 20,
+    PickerHueWheel                = 21,
+    InputRGB                      = 22,
+    InputHSV                      = 23,
+    _OptionsDefault               = 24,
+    _DisplayMask                  = 25,
+    _DataTypeMask                 = 26,
+    _PickerMask                   = 27,
+    _InputMask                    = 28,
+}
 
----@class ImGuiTreeNodeFlags
----@field None                          ImGuiTreeNodeFlags 0
----@field Selected                      ImGuiTreeNodeFlags 1
----@field Framed                        ImGuiTreeNodeFlags 2
----@field AllowItemOverlap              ImGuiTreeNodeFlags 3
----@field NoTreePushOnOpen              ImGuiTreeNodeFlags 4
----@field NoAutoOpenOnLog               ImGuiTreeNodeFlags 5
----@field DefaultOpen                   ImGuiTreeNodeFlags 6
----@field OpenOnDoubleClick             ImGuiTreeNodeFlags 7
----@field OpenOnArrow                   ImGuiTreeNodeFlags 8
----@field Leaf                          ImGuiTreeNodeFlags 9
----@field Bullet                        ImGuiTreeNodeFlags 10
----@field FramePadding                  ImGuiTreeNodeFlags 11
----@field SpanAvailWidth                ImGuiTreeNodeFlags 12
----@field SpanFullWidth                 ImGuiTreeNodeFlags 13
----@field NavLeftJumpsBackHere          ImGuiTreeNodeFlags 14
----@field CollapsingHeader              ImGuiTreeNodeFlags 15
-ImGuiTreeNodeFlags = {}
+---@enum ImGuiTreeNodeFlags
+ImGuiTreeNodeFlags = {
+    None                          = 0,
+    Selected                      = 1,
+    Framed                        = 2,
+    AllowItemOverlap              = 3,
+    NoTreePushOnOpen              = 4,
+    NoAutoOpenOnLog               = 5,
+    DefaultOpen                   = 6,
+    OpenOnDoubleClick             = 7,
+    OpenOnArrow                   = 8,
+    Leaf                          = 9,
+    Bullet                        = 10,
+    FramePadding                  = 11,
+    SpanAvailWidth                = 12,
+    SpanFullWidth                 = 13,
+    NavLeftJumpsBackHere          = 14,
+    CollapsingHeader              = 15,
+}
 
----@class ImGuiSelectableFlags
----@field None                          ImGuiSelectableFlags 0
----@field DontClosePopups               ImGuiSelectableFlags 1
----@field SpanAllColumns                ImGuiSelectableFlags 2
----@field AllowDoubleClick              ImGuiSelectableFlags 3
----@field Disabled                      ImGuiSelectableFlags 4
----@field AllowItemOverlap              ImGuiSelectableFlags 5
-ImGuiSelectableFlags = {}
+---@enum ImGuiSelectableFlags
+ImGuiSelectableFlags = {
+    None                          = 0,
+    DontClosePopups               = 1,
+    SpanAllColumns                = 2,
+    AllowDoubleClick              = 3,
+    Disabled                      = 4,
+    AllowItemOverlap              = 5,
+}
 
----@class ImGuiPopupFlags
----@field None                          ImGuiPopupFlags 0
----@field MouseButtonLeft               ImGuiPopupFlags 1
----@field MouseButtonRight              ImGuiPopupFlags 2
----@field MouseButtonMiddle             ImGuiPopupFlags 3
----@field MouseButtonMask_              ImGuiPopupFlags 4
----@field MouseButtonDefault_           ImGuiPopupFlags 5
----@field NoOpenOverExistingPopup       ImGuiPopupFlags 6
----@field NoOpenOverItems               ImGuiPopupFlags 7
----@field AnyPopupId                    ImGuiPopupFlags 8
----@field AnyPopupLevel                 ImGuiPopupFlags 9
----@field AnyPopup                      ImGuiPopupFlags 10
-ImGuiPopupFlags = {}
+---@enum ImGuiPopupFlags
+ImGuiPopupFlags = {
+    None                          = 0,
+    MouseButtonLeft               = 1,
+    MouseButtonRight              = 2,
+    MouseButtonMiddle             = 3,
+    MouseButtonMask_              = 4,
+    MouseButtonDefault_           = 5,
+    NoOpenOverExistingPopup       = 6,
+    NoOpenOverItems               = 7,
+    AnyPopupId                    = 8,
+    AnyPopupLevel                 = 9,
+    AnyPopup                      = 10,
+}
 
----@class ImGuiTableFlags
----@field None                          ImGuiTableFlags 0
----@field Resizable                     ImGuiTableFlags 1
----@field Reorderable                   ImGuiTableFlags 2
----@field Hideable                      ImGuiTableFlags 3
----@field Sortable                      ImGuiTableFlags 4
----@field NoSavedSettings               ImGuiTableFlags 5
----@field ContextMenuInBody             ImGuiTableFlags 6
----@field RowBg                         ImGuiTableFlags 7
----@field BordersInnerH                 ImGuiTableFlags 8
----@field BordersOuterH                 ImGuiTableFlags 9
----@field BordersInnerV                 ImGuiTableFlags 10
----@field BordersOuterV                 ImGuiTableFlags 11
----@field BordersH                      ImGuiTableFlags 12
----@field BordersV                      ImGuiTableFlags 13
----@field BordersInner                  ImGuiTableFlags 14
----@field BordersOuter                  ImGuiTableFlags 15
----@field Borders                       ImGuiTableFlags 16
----@field NoBordersInBody               ImGuiTableFlags 17
----@field NoBordersInBodyUntilResize    ImGuiTableFlags 18
----@field SizingFixedFit                ImGuiTableFlags 19
----@field SizingFixedSame               ImGuiTableFlags 20
----@field SizingStretchProp             ImGuiTableFlags 21
----@field SizingStretchSame             ImGuiTableFlags 22
----@field NoHostExtendX                 ImGuiTableFlags 23
----@field NoHostExtendY                 ImGuiTableFlags 24
----@field NoKeepColumnsVisible          ImGuiTableFlags 25
----@field PreciseWidths                 ImGuiTableFlags 26
----@field NoClip                        ImGuiTableFlags 27
----@field PadOuterX                     ImGuiTableFlags 28
----@field NoPadOuterX                   ImGuiTableFlags 29
----@field NoPadInnerX                   ImGuiTableFlags 30
----@field ScrollX                       ImGuiTableFlags 31
----@field ScrollY                       ImGuiTableFlags 32
----@field SortMulti                     ImGuiTableFlags 33
----@field SortTristate                  ImGuiTableFlags 34
----@field SizingMask                    ImGuiTableFlags 35
-ImGuiTableFlags = {}
+---@enum ImGuiTableFlags
+ImGuiTableFlags = {
+    None                          = 0,
+    Resizable                     = 1,
+    Reorderable                   = 2,
+    Hideable                      = 3,
+    Sortable                      = 4,
+    NoSavedSettings               = 5,
+    ContextMenuInBody             = 6,
+    RowBg                         = 7,
+    BordersInnerH                 = 8,
+    BordersOuterH                 = 9,
+    BordersInnerV                 = 10,
+    BordersOuterV                 = 11,
+    BordersH                      = 12,
+    BordersV                      = 13,
+    BordersInner                  = 14,
+    BordersOuter                  = 15,
+    Borders                       = 16,
+    NoBordersInBody               = 17,
+    NoBordersInBodyUntilResize    = 18,
+    SizingFixedFit                = 19,
+    SizingFixedSame               = 20,
+    SizingStretchProp             = 21,
+    SizingStretchSame             = 22,
+    NoHostExtendX                 = 23,
+    NoHostExtendY                 = 24,
+    NoKeepColumnsVisible          = 25,
+    PreciseWidths                 = 26,
+    NoClip                        = 27,
+    PadOuterX                     = 28,
+    NoPadOuterX                   = 29,
+    NoPadInnerX                   = 30,
+    ScrollX                       = 31,
+    ScrollY                       = 32,
+    SortMulti                     = 33,
+    SortTristate                  = 34,
+    SizingMask                    = 35,
+}
 
----@class ImGuiTableColumnFlags
----@field None                          ImGuiTableColumnFlags 0
----@field Disabled                      ImGuiTableColumnFlags 1
----@field DefaultHide                   ImGuiTableColumnFlags 2
----@field DefaultSort                   ImGuiTableColumnFlags 3
----@field WidthStretch                  ImGuiTableColumnFlags 4
----@field WidthFixed                    ImGuiTableColumnFlags 5
----@field NoResize                      ImGuiTableColumnFlags 6
----@field NoReorder                     ImGuiTableColumnFlags 7
----@field NoHide                        ImGuiTableColumnFlags 8
----@field NoClip                        ImGuiTableColumnFlags 9
----@field NoSort                        ImGuiTableColumnFlags 10
----@field NoSortAscending               ImGuiTableColumnFlags 11
----@field NoSortDescending              ImGuiTableColumnFlags 12
----@field NoHeaderLabel                 ImGuiTableColumnFlags 13
----@field NoHeaderWidth                 ImGuiTableColumnFlags 14
----@field PreferSortAscending           ImGuiTableColumnFlags 15
----@field PreferSortDescending          ImGuiTableColumnFlags 16
----@field IndentEnable                  ImGuiTableColumnFlags 17
----@field IndentDisable                 ImGuiTableColumnFlags 18
----@field IsEnabled                     ImGuiTableColumnFlags 19
----@field IsVisible                     ImGuiTableColumnFlags 20
----@field IsSorted                      ImGuiTableColumnFlags 21
----@field IsHovered                     ImGuiTableColumnFlags 22
----@field WidthMask_                    ImGuiTableColumnFlags 23
----@field IndentMask_                   ImGuiTableColumnFlags 24
----@field StatusMask_                   ImGuiTableColumnFlags 25
----@field NoDirectResize_               ImGuiTableColumnFlags 26
-ImGuiTableColumnFlags = {}
+---@enum ImGuiTableColumnFlags
+ImGuiTableColumnFlags = {
+    None                          = 0,
+    Disabled                      = 1,
+    DefaultHide                   = 2,
+    DefaultSort                   = 3,
+    WidthStretch                  = 4,
+    WidthFixed                    = 5,
+    NoResize                      = 6,
+    NoReorder                     = 7,
+    NoHide                        = 8,
+    NoClip                        = 9,
+    NoSort                        = 10,
+    NoSortAscending               = 11,
+    NoSortDescending              = 12,
+    NoHeaderLabel                 = 13,
+    NoHeaderWidth                 = 14,
+    PreferSortAscending           = 15,
+    PreferSortDescending          = 16,
+    IndentEnable                  = 17,
+    IndentDisable                 = 18,
+    IsEnabled                     = 19,
+    IsVisible                     = 20,
+    IsSorted                      = 21,
+    IsHovered                     = 22,
+    WidthMask_                    = 23,
+    IndentMask_                   = 24,
+    StatusMask_                   = 25,
+    NoDirectResize_               = 26,
+}
 
----@class ImGuiTableRowFlags
----@field None                          ImGuiTableRowFlags 0
----@field Headers                       ImGuiTableRowFlags 1
-ImGuiTableRowFlags = {}
+---@enum ImGuiTableRowFlags
+ImGuiTableRowFlags = {
+    None                          = 0,
+    Headers                       = 1,
+}
 
----@class ImGuiTableBgTarget
----@field None                          ImGuiTableBgTarget 0
----@field RowBg0                        ImGuiTableBgTarget 1
----@field RowBg1                        ImGuiTableBgTarget 2
----@field CellBg                        ImGuiTableBgTarget 3
-ImGuiTableBgTarget = {}
+---@enum ImGuiTableBgTarget
+ImGuiTableBgTarget = {
+    None                          = 0,
+    RowBg0                        = 1,
+    RowBg1                        = 2,
+    CellBg                        = 3,
+}
 
----@class ImDrawFlags
----@field None                               ImDrawFlags 0
----@field Closed                             ImDrawFlags 1
----@field ImDrawFlags_RoundCornersTopLeft    ImDrawFlags 2
----@field RoundCornersTopRight               ImDrawFlags 3
----@field RoundCornersBottomLeft             ImDrawFlags 4
----@field RoundCornersBottomRight            ImDrawFlags 5
----@field RoundCornersNone                   ImDrawFlags 6
----@field RoundCornersTop                    ImDrawFlags 7
----@field RoundCornersBottom                 ImDrawFlags 8
----@field RoundCornersLeft                   ImDrawFlags 9
----@field RoundCornersRight                  ImDrawFlags 10
----@field RoundCornersAll                    ImDrawFlags 11
-ImDrawFlags = {}
+---@enum ImDrawFlags
+ImDrawFlags = {
+    None                               = 0,
+    Closed                             = 1,
+    ImDrawFlags_RoundCornersTopLeft    = 2,
+    RoundCornersTopRight               = 3,
+    RoundCornersBottomLeft             = 4,
+    RoundCornersBottomRight            = 5,
+    RoundCornersNone                   = 6,
+    RoundCornersTop                    = 7,
+    RoundCornersBottom                 = 8,
+    RoundCornersLeft                   = 9,
+    RoundCornersRight                  = 10,
+    RoundCornersAll                    = 11,
+}
 
----@class ImGuiTabBarFlags
----@field None                          ImGuiTabBarFlags 0
----@field Reorderable                   ImGuiTabBarFlags 1
----@field AutoSelectNewTabs             ImGuiTabBarFlags 2
----@field TabListPopupButton            ImGuiTabBarFlags 3
----@field NoCloseWithMiddleMouseButton  ImGuiTabBarFlags 4
----@field NoTabListScrollingButtons     ImGuiTabBarFlags 5
----@field NoTooltip                     ImGuiTabBarFlags 6
----@field FittingPolicyResizeDown       ImGuiTabBarFlags 7
----@field FittingPolicyScroll           ImGuiTabBarFlags 8
----@field FittingPolicyMask_            ImGuiTabBarFlags 9
----@field FittingPolicyDefault_         ImGuiTabBarFlags 10
-ImGuiTabBarFlags = {}
+---@enum ImGuiTabBarFlags
+ImGuiTabBarFlags = {
+    None                          = 0,
+    Reorderable                   = 1,
+    AutoSelectNewTabs             = 2,
+    TabListPopupButton            = 3,
+    NoCloseWithMiddleMouseButton  = 4,
+    NoTabListScrollingButtons     = 5,
+    NoTooltip                     = 6,
+    FittingPolicyResizeDown       = 7,
+    FittingPolicyScroll           = 8,
+    FittingPolicyMask_            = 9,
+    FittingPolicyDefault_         = 10,
+}
 
----@class ImGuiTabItemFlags
----@field None                          ImGuiTabItemFlags 0
----@field UnsavedDocument               ImGuiTabItemFlags 1
----@field SetSelected                   ImGuiTabItemFlags 2
----@field NoCloseWithMiddleMouseButton  ImGuiTabItemFlags 3
----@field NoPushId                      ImGuiTabItemFlags 4
----@field NoTooltip                     ImGuiTabItemFlags 5
----@field NoReorder                     ImGuiTabItemFlags 6
----@field Leading                       ImGuiTabItemFlags 7
----@field Trailing                      ImGuiTabItemFlags 8
-ImGuiTabItemFlags = {}
+---@enum ImGuiTabItemFlags
+ImGuiTabItemFlags = {
+    None                          = 0,
+    UnsavedDocument               = 1,
+    SetSelected                   = 2,
+    NoCloseWithMiddleMouseButton  = 3,
+    NoPushId                      = 4,
+    NoTooltip                     = 5,
+    NoReorder                     = 6,
+    Leading                       = 7,
+    Trailing                      = 8,
+}
 
----@class ImGuiMouseButton
----@field Left                          ImGuiMouseButton 0
----@field Right                         ImGuiMouseButton 1
----@field Middle                        ImGuiMouseButton 2
----@field COUNT                         ImGuiMouseButton 3
-ImGuiMouseButton = {}
+---@enum ImGuiMouseButton
+ImGuiMouseButton = {
+    Left                          = 0,
+    Right                         = 1,
+    Middle                        = 2,
+    COUNT                         = 3,
+}
 
----@class ImDrawCornerFlags
----@field None                          ImDrawCornerFlags 0
----@field TopLeft                       ImDrawCornerFlags 1
----@field TopRight                      ImDrawCornerFlags 2
----@field BotLeft                       ImDrawCornerFlags 3
----@field BotRight                      ImDrawCornerFlags 4
----@field Top                           ImDrawCornerFlags 5
----@field Bot                           ImDrawCornerFlags 6
----@field Left                          ImDrawCornerFlags 7
----@field Right                         ImDrawCornerFlags 8
----@field All                           ImDrawCornerFlags 9
-ImDrawCornerFlags = {}
+---@enum ImDrawCornerFlags
+ImDrawCornerFlags = {
+    None                          = 0,
+    TopLeft                       = 1,
+    TopRight                      = 2,
+    BotLeft                       = 3,
+    BotRight                      = 4,
+    Top                           = 5,
+    Bot                           = 6,
+    Left                          = 7,
+    Right                         = 8,
+    All                           = 9,
+}
 
 ---@class ImGui
 ---@field Begin fun(name: string): bool || fun(name: string, flags: ImGuiWindowFlags): bool || fun(name: string, open: bool): bool, bool || fun(name: string, open: bool, flags: ImGuiWindowFlags): bool, bool
