@@ -3,7 +3,7 @@
 
 ---@alias float number
 ---@alias bool boolean
----@alias int number
+---@alias int integer
 ---@alias double number
 ---@alias void nil
 
@@ -777,3 +777,52 @@ ImDrawCornerFlags = {
 ---@field LoadTexture fun(path: string): ImguiTexture
 ---@field Image fun(texture: ImguiTexture, size: ImVec2?, uv0: ImVec2?, uv1: ImVec2?, tint_col: ImVec4?, border_col: ImVec4?): void
 ImGui = {}
+
+---Helper: Manually clip large list of items.
+---
+---If you have lots evenly spaced items and you have random access to the list, you can perform coarse
+---clipping based on visibility to only submit items that are in view.
+---
+---The clipper calculates the range of visible items and advance the cursor to compensate for the non-visible items we have skipped.
+---
+---(Dear ImGui already clip items based on their bounds but: it needs to first layout the item to do so, and generally
+--- fetching/submitting your own data incurs additional cost. Coarse clipping using ImGuiListClipper allows you to easily
+--- scale using lists with tens of thousands of items without a problem)
+---
+---Usage:
+---```
+---local clipper = ImGuiListClipper.new();
+---clipper:Begin(linesCount, -1); -- (arguments number of lines and line height with -1 calculating the height from first item drawn)
+---while (clipper:Step()) do
+---  for i = clipper.DisplayStart, clipper.DisplayEnd, 1 do
+---    -- draw lines, use i as index of what needs drawing
+---  end
+---end
+---```
+---Generally what happens is:
+---- Clipper lets you process the first element (DisplayStart = 0, DisplayEnd = 1) regardless of it being visible or not.
+---- User code submit that one element.
+---- Clipper can measure the height of the first element
+---- Clipper calculate the actual range of elements to display based on the current clipping rectangle, position the cursor before the first visible element.
+---- User code submit visible elements.
+---- The clipper also handles various subtleties related to keyboard/gamepad navigation, wrapping etc.
+---@class ImGuiListClipper
+---@field DisplayStart int
+---@field DisplayEnd int
+ImGuiListClipper = {}
+
+---@return ImGuiListClipper
+function ImGuiListClipper.new() end
+
+---@param items_count int
+---@param items_height float?
+---@return void
+function ImGuiListClipper:Begin(items_count, items_height) end
+
+---Automatically called on the last call of Step() that returns false.
+---@return void
+function ImGuiListClipper:End() end
+
+---Call until it returns false. The DisplayStart/DisplayEnd fields will be set and you can process/draw those items.
+---@return void
+function ImGuiListClipper:Step() end
