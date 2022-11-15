@@ -2,7 +2,7 @@
 
 Lua type defines for the ImGui bindings in Cyber Engine Tweaks
 
-![image](https://user-images.githubusercontent.com/13299626/195679410-496531ca-ee9a-4646-ae7f-e410ecfc949a.png)
+![imgui](https://user-images.githubusercontent.com/13299626/201974802-318271a5-5e21-4de2-8441-364f25aee6f8.gif)
 
 ## Usage:
 
