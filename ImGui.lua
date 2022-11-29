@@ -16,12 +16,24 @@
 ---@field y float
 ImVec2 = {}
 
+---@param x? float
+---@param y? float
+---@return ImVec2
+function ImVec2.new(x, y) end
+
 ---@class ImVec4
 ---@field x float
 ---@field y float
 ---@field z float
 ---@field w float
 ImVec4 = {}
+
+---@param x? float
+---@param y? float
+---@param z? float
+---@param w? float
+---@return ImVec4
+function ImVec4.new(x, y, z, w) end
 
 ---@class ImGuiStyle
 ---@field Alpha                         float
